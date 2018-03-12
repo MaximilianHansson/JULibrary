@@ -1,0 +1,35 @@
+﻿body {
+	background-color: #e9ebee;
+}
+
+.search-div {
+	margin: auto;
+	width: auto;
+	text-align: center;
+}
+
+#search-box {
+	display: inline;
+}
+
+#search-btn {
+	display: inline;
+}
+
+/*.form-inline {
+	display: inline;
+}*/
+
+.media {
+	background-color: #ffffff;
+	padding-top: 7px;
+	padding-bottom: 7px;
+}
+
+.book-preview {
+	height: 120px;
+}
+
+.title-preview {
+	margin-top: 0px;
+}
