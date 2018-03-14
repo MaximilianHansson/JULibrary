@@ -8,7 +8,8 @@ namespace RepositoryLayer
     public partial class LibDB : DbContext
     {
         public LibDB()
-            : base("name=LibDB")
+			//Fix from Peter LG
+            : base("data source=libdb.cgonxecdluoj.eu-west-1.rds.amazonaws.com;initial catalog=dbGroupDM;persist security info=True;user id=student11;password=sdgfewethyttd;MultipleActiveResultSets=True;App=EntityFramework")
         {
         }
 
@@ -23,5 +24,6 @@ namespace RepositoryLayer
                 .WithMany(e => e.AUTHOR)
                 .Map(m => m.ToTable("BOOK_AUTHOR").MapLeftKey("Aid").MapRightKey("ISBN"));
         }
-    }
+
+	}
 }

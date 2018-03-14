@@ -1,17 +1,20 @@
-﻿@{
+﻿@using PresentationLayer.Controllers
+@model List<ServiceLayer.Models.Book>
+@{
 	ViewBag.Title = "Books";
-
+	//var books = (BooksController)ViewData["bookList"];
+	
 }
 
-@*@using PagedList.Mvc; //import this so we get our HTML Helper
-@using PagedList; //import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)*@
+@using PagedList.Mvc; //import this so we get our HTML Helper
+@using PagedList; //import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)
 
 <!-- import the included stylesheet for some (very basic) default styling -->
-@*<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />*@
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 <div class="container">
 	<div class="search-div">
-		<form class="	" action="/action_page.php">
+		<form class="	" action="GET">
 			<div class="form-group">
 				<input type="text" class="form-control" id="search-box" placeholder="Book">
 				<button type="submit" class="btn btn-default" id="search-btn">Search</button>
@@ -22,12 +25,12 @@
 
 	<!-- loop through each of your products and display it however you want. we're just printing the name here -->
 	<h2>List of Products</h2>
-	@*<ul>
-			@foreach (var product in ViewBag.OnePageOfProducts)
-			{
-				<li>Hej</li>
-			}
-		</ul>*@
+	<ul>
+		@foreach (var book in Model)
+		{
+			<li>@book.Title</li>
+		}
+	</ul>
 
 
 
