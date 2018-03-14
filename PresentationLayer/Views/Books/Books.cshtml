@@ -1,9 +1,9 @@
 ﻿@using PresentationLayer.Controllers
 @model List<ServiceLayer.Models.Book>
 @{
-	ViewBag.Title = "Books";
-	//var books = (BooksController)ViewData["bookList"];
-	
+    ViewBag.Title = "Books";
+    //var books = (BooksController)ViewData["bookList"];
+
 }
 
 @using PagedList.Mvc; //import this so we get our HTML Helper
@@ -26,10 +26,15 @@
 	<!-- loop through each of your products and display it however you want. we're just printing the name here -->
 	<h2>List of Products</h2>
 	<ul>
-		@foreach (var book in Model)
-		{
-			<li>@book.Title</li>
-		}
+		@{
+            if (Model != null)
+            {
+                foreach (var book in Model)
+                {
+                    <li>@book.Title</li>
+                }
+            }
+        }
 	</ul>
 
 
