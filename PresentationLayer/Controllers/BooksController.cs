@@ -21,7 +21,7 @@ namespace PresentationLayer.Controllers
                 BookManager incomingBooks = new BookManager();
                 var bookList = incomingBooks.getBooks(searchString);
 
-				return View("Books", bookList.ToPagedList(pageNumber, pageNumber));
+				return View("Books", bookList.ToPagedList(pageNumber, pageSize));
             }
             else
             {
