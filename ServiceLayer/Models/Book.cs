@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RepositoryLayer;
 
 namespace ServiceLayer.Models
 {
@@ -19,5 +20,8 @@ namespace ServiceLayer.Models
         public string publicationinfo { get; set; }
 
         public short? pages { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AUTHOR> Authors { get; set; }
     }
 }

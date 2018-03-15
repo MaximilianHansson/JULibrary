@@ -25,7 +25,10 @@ namespace PresentationLayer.Controllers
             }
             else
             {
-                return View("Books");
+                BookManager incomingBooks = new BookManager();
+                var bookList = incomingBooks.getAllBooks(); 
+
+                return View("Books", bookList.ToPagedList(pageNumber, pageSize));
             }
 
 			//ViewData["bookList"] = bookList;
