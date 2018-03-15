@@ -29,8 +29,8 @@ namespace RepositoryLayer.RepositoryManagers
 		{
 			using(var db = new LibDB())
 			{
-                var query = db.BOOK.Where(b => b.Title.Contains(name)).OrderBy(b => b.PublicationYear);
-				return db.BOOK.ToList();
+                var query = db.BOOK.Where(b => b.Title.Contains(name)).OrderBy(b => b.PublicationYear).ToList();
+				return query;
 			}
 		}
 
