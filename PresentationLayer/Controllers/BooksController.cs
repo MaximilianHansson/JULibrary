@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ServiceLayer.Managers;
+using PagedList;
 
 namespace PresentationLayer.Controllers
 {
@@ -12,12 +13,15 @@ namespace PresentationLayer.Controllers
         // GET: Books
         public ActionResult Index(string searchString)
         {
+			int pageSize = 15;
+			int pageNumber = 1;
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 BookManager incomingBooks = new BookManager();
                 var bookList = incomingBooks.getBooks(searchString);
 
-                return View("Books", bookList);
+				return View("Books", bookList.ToPagedList(pageNumber, pageNumber));
             }
             else
             {
