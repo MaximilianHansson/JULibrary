@@ -11,10 +11,22 @@ namespace PresentationLayer.Controllers
     public class BooksController : Controller
     {
         // GET: Books
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string searchString, string currentFilter, int? page)
         {
+
+			if(searchString != null)
+			{
+				page = 1;
+			}
+			else
+			{
+				searchString = currentFilter;
+			}
+
+			ViewBag.CurrentFilter = searchString;
+
 			int pageSize = 15;
-			int pageNumber = 1;
+			int pageNumber = (page ?? 1);
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -25,22 +37,11 @@ namespace PresentationLayer.Controllers
             }
             else
             {
-                return View("Books");
-            }
+				BookManager incomingBooks = new BookManager();
+				var bookList = incomingBooks.getAllBooks();
 
-			//ViewData["bookList"] = bookList;
-
-            
+				return View("Books", bookList.ToPagedList(pageNumber, pageSize));
+			}
         }
-		//public object Index(int page = 1)
-		//{
-		//	//var products = MyProductDataSource.FindAllProducts(); //returns IQueryable<Product> representing an unknown number of products. a thousand maybe?
-
-
-		//	//var onePageOfProducts = products.ToPagedList(pageNumber, 25); // will only contain 25 products max because of the pageSize
-
-		//	//ViewBag.OnePageOfProducts = onePageOfProducts;
-		//	return View();
-		//}
 	}
 }
