@@ -21,7 +21,8 @@ namespace RepositoryLayer.RepositoryManagers
 		{
 			using(var db = new LibDB())
 			{
-				return db.BOOK.FirstOrDefault(x => x.ISBN.Equals(id));
+                db.Configuration.LazyLoadingEnabled = false;
+                return db.BOOK.FirstOrDefault(x => x.ISBN.Equals(id));
 			}
 		}
 
@@ -29,7 +30,8 @@ namespace RepositoryLayer.RepositoryManagers
 		{
 			using(var db = new LibDB())
 			{
-                var query = db.BOOK.Where(b => b.Title.Contains(name)).OrderBy(b => b.PublicationYear).ToList();
+                db.Configuration.LazyLoadingEnabled = false;
+                var query = db.BOOK.Include(x => x.AUTHOR).Where(b => b.Title.Contains(name)).OrderBy(b => b.PublicationYear).ToList();
 				return query;
 			}
 		}
@@ -38,7 +40,9 @@ namespace RepositoryLayer.RepositoryManagers
 		{
 			using(var db = new LibDB())
 			{
-				return db.BOOK.ToList();
+                db.Configuration.LazyLoadingEnabled = false;
+                var query = db.BOOK.Include(x => x.AUTHOR).ToList();
+                return query;
 			}
 		}
 
