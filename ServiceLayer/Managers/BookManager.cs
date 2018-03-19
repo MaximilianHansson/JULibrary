@@ -18,6 +18,7 @@ namespace ServiceLayer.Managers
 			BookRepository bookManagerObj = new BookRepository();
 			return Mapper.Map<List<Book>>(bookManagerObj.ReadAll(name));
 		}
+
 		public List<Book> getAllBooks()
 		{
 			BookRepository bookManagerObj = new BookRepository();

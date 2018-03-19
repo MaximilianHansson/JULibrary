@@ -37,11 +37,15 @@ namespace PresentationLayer.Controllers
             }
             else
             {
+
 				BookManager incomingBooks = new BookManager();
 				var bookList = incomingBooks.getAllBooks(); 
 
+                BookManager incomingBooks = new BookManager();
+                var bookList = incomingBooks.getAllBooks(); 
+
                 return View("Books", bookList.ToPagedList(pageNumber, pageSize));
-			}
+            }
         }
 	}
 }
