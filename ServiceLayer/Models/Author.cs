@@ -15,5 +15,7 @@ namespace ServiceLayer.Models
         public string LastName { get; set; }
 
         public string BirthYear { get; set; }
+
+        public virtual List<Book> Book { get; set; }
     }
 }

@@ -22,14 +22,18 @@
 	</div>
 
 	<!-- loop through each of your products and display it however you want. we're just printing the name here -->
-	<h2>List of Products</h2>
-	<ul>
+	<ul class="media-list">
 		@{
 			if (Model != null)
 			{
 				foreach (var book in Model)
 				{
 					<li>@book.Title, @book.pages</li>
+
+                    <li class="media">
+                        <div class="media-heading"><h3>@book.Title</h3></div>
+                        <div class="media-body">ISBN: @book.ISBN <br /> @book.publicationinfo <br /> @book.Author.First().FirstName @book.Author.First().LastName </div>
+                    </li>
 				}
 			}
 		}
