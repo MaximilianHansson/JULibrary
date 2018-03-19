@@ -28,7 +28,7 @@ namespace RepositoryLayer.RepositoryManagers
 
 		public List<BOOK> ReadAll(string name)
 		{
-			using(var db = new LibDB())
+			using (var db = new LibDB())
 			{
                 db.Configuration.LazyLoadingEnabled = false;
                 var query = db.BOOK.Include(x => x.AUTHOR).Where(b => b.Title.Contains(name)).OrderBy(b => b.PublicationYear).ToList();

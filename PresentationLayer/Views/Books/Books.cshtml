@@ -1,10 +1,7 @@
-﻿@using PresentationLayer.Controllers
+﻿@model PagedList.IPagedList<ServiceLayer.Models.Book>
 
 @using PagedList.Mvc; //import this so we get our HTML Helper
 @using PagedList; //import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)
-
-@*@model List<ServiceLayer.Models.Book>*@
-@model PagedList.IPagedList<ServiceLayer.Models.Book>
 
 @{
 	ViewBag.Title = "Books";
@@ -33,7 +30,13 @@
 				{
                     <li class="media">
                         <div class="media-heading"><h3>@book.Title</h3></div>
-                        <div class="media-body">ISBN: @book.ISBN <br /> @book.publicationinfo <br /> @book.Author.First().FirstName @book.Author.First().LastName </div>
+						<div class="media-body">
+							Author: @book.Author.First().FirstName
+									@book.Author.First().LastName <br />
+							ISBN:	@book.ISBN <br />
+							Publication info: @book.publicationinfo <br />
+							Pages:	@book.pages
+						</div>
                     </li>
 				}
 			}
@@ -41,8 +44,7 @@
 	</ul>
 
 
-
-	@*@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page }))*@
-
+	Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount	
+	@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 
 </div>
