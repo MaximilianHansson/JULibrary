@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ServiceLayer.Managers;
+using ServiceLayer.Models;
 using PagedList;
 
 namespace PresentationLayer.Controllers
@@ -11,7 +12,7 @@ namespace PresentationLayer.Controllers
     public class BooksController : Controller
     {
         // GET: Books
-        public ActionResult Index(string searchString, string currentFilter, int? page)
+        public ActionResult Index(string searchString, string currentFilter, int? page, string searchTerm)
         {
 
 			if(searchString != null)
@@ -31,14 +32,29 @@ namespace PresentationLayer.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 BookManager incomingBooks = new BookManager();
-                var bookList = incomingBooks.getBooks(searchString);
+                List<Book> bookList = new List<Book>();
 
-				return View("Books", bookList.ToPagedList(pageNumber, pageSize));
+                if (searchTerm == "isbn")
+                {
+                    bookList = incomingBooks.getBooksByIsbn(searchString);
+                }
+                else if (searchTerm == "classification")
+                {
+                    bookList = incomingBooks.getBooksByClassi(searchString);
+                }
+                else
+                {
+                    bookList = incomingBooks.getBooks(searchString);
+                }
+
+                return View("Books", bookList.ToPagedList(pageNumber, pageSize));
             }
             else
             {
                 BookManager incomingBooks = new BookManager();
-                var bookList = incomingBooks.getAllBooks(); 
+                List<Book> bookList = new List<Book>();
+                
+                bookList = incomingBooks.getAllBooks();
 
                 return View("Books", bookList.ToPagedList(pageNumber, pageSize));
             }
