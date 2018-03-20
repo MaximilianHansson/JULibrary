@@ -35,8 +35,26 @@ namespace RepositoryLayer.RepositoryManagers
 				return query;
 			}
 		}
+        public List<BOOK> ReadAllByIsbn(string isbn)
+        {
+            using (var db = new LibDB())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+                var query = db.BOOK.Include(x => x.AUTHOR).Where(b => b.ISBN.Contains(isbn)).OrderBy(b => b.PublicationYear).ToList();
+                return query;
+            }
+        }
+        public List<BOOK> ReadAllByClassi(string classi)
+        {
+            using (var db = new LibDB())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+                var query = db.BOOK.Include(x => x.AUTHOR).Where(b => b.CLASSIFICATION.ToString().Contains(classi)).OrderBy(b => b.PublicationYear).ToList();
+                return query;
+            }
+        }
 
-		public List<BOOK> List()
+        public List<BOOK> List()
 		{
 			using(var db = new LibDB())
 			{
