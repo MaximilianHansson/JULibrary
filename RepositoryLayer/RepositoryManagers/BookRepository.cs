@@ -12,17 +12,18 @@ namespace RepositoryLayer.RepositoryManagers
 	{
 		public BookRepository() { }
 
-		public BookRepository(int bookID)
+		public BookRepository(string isbn)
 		{
-			_bookObj = this.Read(bookID);
+			_bookObj = this.Read(isbn);
 		}
 
-		public BOOK Read(int id)
+		public BOOK Read(string isbn)
 		{
 			using(var db = new LibDB())
 			{
                 db.Configuration.LazyLoadingEnabled = false;
-                return db.BOOK.FirstOrDefault(x => x.ISBN.Equals(id));
+                var query = db.BOOK.Include(b => b.AUTHOR).First(b => b.ISBN.Equals(isbn));
+                return query;
 			}
 		}
 
@@ -35,8 +36,26 @@ namespace RepositoryLayer.RepositoryManagers
 				return query;
 			}
 		}
+        public List<BOOK> ReadAllByIsbn(string isbn)
+        {
+            using (var db = new LibDB())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+                var query = db.BOOK.Include(x => x.AUTHOR).Where(b => b.ISBN.Contains(isbn)).OrderBy(b => b.PublicationYear).ToList();
+                return query;
+            }
+        }
+        public List<BOOK> ReadAllByClassi(string classi)
+        {
+            using (var db = new LibDB())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+                var query = db.BOOK.Include(x => x.AUTHOR).Where(b => b.CLASSIFICATION.ToString().Contains(classi)).OrderBy(b => b.PublicationYear).ToList();
+                return query;
+            }
+        }
 
-		public List<BOOK> List()
+        public List<BOOK> List()
 		{
 			using(var db = new LibDB())
 			{

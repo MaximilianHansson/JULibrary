@@ -150,6 +150,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthorsController.cs" />
+    <Compile Include="Controllers\BookDetailController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -172,6 +173,7 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Books\Books.cshtml" />
     <Content Include="Views\Authors\Authors.cshtml" />
+    <Content Include="Views\BookDetail\BookDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
