@@ -1,7 +1,46 @@
-﻿
+﻿@model PagedList.IPagedList<ServiceLayer.Models.Author>
+
+@using PagedList.Mvc; //import this so we get our HTML Helper
+@using PagedList; //import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)
+
 @{
-    ViewBag.Title = "Authors";
+	ViewBag.Title = "Authors";
 }
 
 <h2>Authors</h2>
 
+<!-- import the included stylesheet for some (very basic) default styling -->
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<div class="container">
+	<div class="search-div">
+		<form asp-controller="Movies" asp-action="Index">
+			<div class="form-group">
+				<input type="text" name="SearchString" class="form-control" id="search-box" placeholder="Author">
+				<button type="submit" class="btn btn-default" id="search-btn" value="Filter">Search</button>
+			</div>
+
+		</form>
+	</div>
+
+	<ul>
+		@{
+			if (Model != null)
+			{
+				foreach (var author in Model)
+				{
+					<li class="media">
+						<div class="media-heading">
+						<h3>@author.FirstName @author.LastName</h3></div>
+
+					</li>
+				}
+			}
+		}
+	</ul>
+
+
+		Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+	@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+</div>

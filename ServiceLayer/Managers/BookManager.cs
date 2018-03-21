@@ -41,6 +41,5 @@ namespace ServiceLayer.Managers
 			BookRepository bookManagerObj = new BookRepository();
 			return Mapper.Map<List<Book>>(bookManagerObj.List());
 		}
-
-	}
+	}	
 }
