@@ -31,7 +31,7 @@ namespace RepositoryLayer.RepositoryManagers
 			{
 				db.Configuration.LazyLoadingEnabled = false;
 				//Only last name for now
-				var query = db.AUTHOR.Where(a => a.LastName.Contains(name)).OrderBy(a => a.LastName).ToList();
+				var query = db.AUTHOR.Where(a => a.LastName.Contains(name) || a.FirstName.Contains(name)).OrderBy(a => a.LastName).ToList();
 				return query;
 			}
 		}

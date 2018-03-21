@@ -16,7 +16,7 @@
 	<div class="search-div">
 		<form asp-controller="Movies" asp-action="Index">
 			<div class="form-group">
-				<input type="text" name="SearchString" class="form-control" id="search-box" placeholder="Book">
+				<input type="text" name="SearchString" class="form-control" id="search-box" placeholder="Author">
 				<button type="submit" class="btn btn-default" id="search-btn" value="Filter">Search</button>
 			</div>
 
@@ -29,7 +29,11 @@
 			{
 				foreach (var author in Model)
 				{
-					<li>@author.FirstName @author.LastName</li>
+					<li class="media">
+						<div class="media-heading">
+						<h3>@author.FirstName @author.LastName</h3></div>
+
+					</li>
 				}
 			}
 		}

@@ -16,7 +16,7 @@ namespace ServiceLayer.Managers
 		public List<Author> getAuthors(string name)
 		{
 			AuthorRepository authorManagerObj = new AuthorRepository();
-			return Mapper.Map<List<Author>>(authorManagerObj.List());
+			return Mapper.Map<List<Author>>(authorManagerObj.ReadAll(name));
 		}
 
 		public List<Author> getAllAuthors()
