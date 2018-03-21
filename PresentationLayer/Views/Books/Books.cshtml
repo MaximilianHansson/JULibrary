@@ -37,7 +37,7 @@
 				foreach (var book in Model)
 				{
                     <li class="media">
-                        <div class="media-heading"><h3>@book.Title</h3></div>
+                        <div class="media-heading"><a href='bookDetail/?isbn=@book.ISBN'>@book.Title</a></div>
 						<div class="media-body">
 							Author: @book.Author.First().FirstName
 									@book.Author.First().LastName <br />
