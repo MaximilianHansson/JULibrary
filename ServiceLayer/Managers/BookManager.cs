@@ -13,6 +13,12 @@ namespace ServiceLayer.Managers
 	{
 		public BookManager() { }
 
+        public Book getBook(string isbn)
+        {
+            BookRepository bookManagerObj = new BookRepository();
+            var temp = Mapper.Map<Book>(bookManagerObj.Read(isbn));
+            return temp;
+        }
 		public List<Book> getBooks(string name)
 		{
 			BookRepository bookManagerObj = new BookRepository();

@@ -26,7 +26,7 @@ namespace PresentationLayer.Controllers
 
 			ViewBag.CurrentFilter = searchString;
 
-			int pageSize = 15;
+			int pageSize = 10;
 			int pageNumber = (page ?? 1);
 
             if (!String.IsNullOrEmpty(searchString))
