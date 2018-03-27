@@ -22,7 +22,7 @@ namespace RepositoryLayer.RepositoryManagers
             using (var db = new LibDB())
             {
 				db.Configuration.LazyLoadingEnabled = false;
-				return db.AUTHOR.FirstOrDefault(x => x.Aid.Equals(Aid));
+				return db.AUTHOR.Include(x => x.BOOK).FirstOrDefault(x => x.Aid.Equals(Aid));
             }
         }
 		public List<AUTHOR> ReadAll(string name)
@@ -42,8 +42,7 @@ namespace RepositoryLayer.RepositoryManagers
 				db.Configuration.LazyLoadingEnabled = false;
 				var query = db.AUTHOR.ToList();
 				return query;
-			}
-				
+			}		
 		}
 
 		private AUTHOR _authorObj = null;

@@ -30,9 +30,8 @@
 				foreach (var author in Model)
 				{
 					<li class="media">
-						<div class="media-heading">
-						<h3>@author.FirstName @author.LastName</h3></div>
-
+						<div class="media-heading"><a href="authorDetail/?Aid=@author.Aid">
+						@author.FirstName @author.LastName</a></div>
 					</li>
 				}
 			}
