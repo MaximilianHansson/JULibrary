@@ -18,13 +18,14 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+				@Html.ActionLink("JU Library", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li>@Html.ActionLink("Books", "Index", "Books", new { area = "" }, new { @class = "navbar-inverse" })</li>
 					<li>@Html.ActionLink("Authors", "Index", "Authors", new { area = "" }, new { @class = "navbar-inverse" })</li>
-					<li><a href="#">Log in</a></li>
+                    <li>@Html.ActionLink("Administrators", "Index", "Administrators", new { area = "" }, new { @class = "navbar-inverse" })</li>
+					<li>@Html.ActionLink("Login", "Index", "Login", new { area = "" }, new { @class = "navbar-inverse" })</li>
 				</ul>
 			</div>
 		</div>
