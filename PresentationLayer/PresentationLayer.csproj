@@ -149,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AuthorDetailController.cs" />
     <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\BookDetailController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
@@ -174,6 +175,7 @@
     <Content Include="Views\Books\Books.cshtml" />
     <Content Include="Views\Authors\Authors.cshtml" />
     <Content Include="Views\BookDetail\BookDetail.cshtml" />
+    <Content Include="Views\AuthorDetail\AuthorDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

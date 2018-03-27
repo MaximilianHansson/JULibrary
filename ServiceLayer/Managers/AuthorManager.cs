@@ -13,6 +13,12 @@ namespace ServiceLayer.Managers
 	{
 		public AuthorManager() { }
 
+		public Author getAuthor(int Aid)
+		{
+			AuthorRepository authorManagerObj = new AuthorRepository();
+			return Mapper.Map<Author>(authorManagerObj.Read(Aid));
+		}
+
 		public List<Author> getAuthors(string name)
 		{
 			AuthorRepository authorManagerObj = new AuthorRepository();

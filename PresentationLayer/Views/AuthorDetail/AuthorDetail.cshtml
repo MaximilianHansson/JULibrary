@@ -1,0 +1,25 @@
+﻿@model ServiceLayer.Models.Author
+
+@{
+    ViewBag.Title = "AuthorDetail";
+}
+
+@{ 
+	if (!string.IsNullOrEmpty(Model.LastName))
+	{
+		<h2>@Model.FirstName @Model.LastName</h2>
+
+		<p>Birth year: @Model.BirthYear</p>
+		<p>Books: </p>
+		<ul>
+			@foreach (var book in Model.Book)
+			{
+			<li>@book.Title</li>
+			}
+		</ul>
+	}
+	else
+	{
+		<p>Error reciving author</p>
+	}
+}
