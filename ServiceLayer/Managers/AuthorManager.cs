@@ -30,5 +30,11 @@ namespace ServiceLayer.Managers
 			AuthorRepository authorManagerObj = new AuthorRepository();
 			return Mapper.Map<List<Author>>(authorManagerObj.List());
 		}
+
+		public void createAuthor(string firstName, string lastName, string birthYear)
+		{
+			AuthorRepository authorManagerObj = new AuthorRepository();
+			authorManagerObj.CreateNew(firstName, lastName, birthYear);
+		}
 	}
 }
