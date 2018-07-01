@@ -12,11 +12,6 @@ namespace RepositoryLayer.RepositoryManagers
     {
 		public AuthorRepository() { }
 
-		public AuthorRepository(int authorID)
-		{
-			_authorObj = this.Read(authorID);
-		}
-
         public AUTHOR Read(int Aid)
         {
             using (var db = new LibDB())
@@ -30,7 +25,6 @@ namespace RepositoryLayer.RepositoryManagers
 			using (var db = new LibDB())
 			{
 				db.Configuration.LazyLoadingEnabled = false;
-				//Only last name for now
 				var query = db.AUTHOR.Where(a => a.LastName.Contains(name) || a.FirstName.Contains(name)).OrderBy(a => a.LastName).ToList();
 				return query;
 			}
@@ -45,8 +39,24 @@ namespace RepositoryLayer.RepositoryManagers
 			}		
 		}
 
-		private AUTHOR _authorObj = null;
+		public void CreateNew(string firstName, string lastName, string birthYear)
+		{
+			using (var db = new LibDB())
+			{
+				var author = new AUTHOR();
+				author.FirstName = firstName;
+				author.LastName = lastName;
+				author.BirthYear = birthYear;
+
+				db.AUTHOR.Add(author);
+				db.SaveChanges();
+			}
+			//var author = new AUTHOR();
+			//author.FirstName = firstName;
+			//author.LastName = lastName;
+			//author.BirthYear = birthYear;
 
 
+		}
 	}
 }
