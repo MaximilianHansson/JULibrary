@@ -65,6 +65,15 @@ namespace RepositoryLayer.RepositoryManagers
 			}
 		}
 
+        public void CreateNew(BOOK book)
+        {
+            using(var db = new LibDB())
+            {
+                db.BOOK.Add(book);
+                db.SaveChanges();
+            }
+        }
+
 		private BOOK _bookObj = null;
 	}
 }

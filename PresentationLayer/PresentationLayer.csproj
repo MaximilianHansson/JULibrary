@@ -154,6 +154,7 @@
     <Compile Include="Controllers\BookDetailController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\CreateAuthorController.cs" />
+    <Compile Include="Controllers\CreateBookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -178,6 +179,7 @@
     <Content Include="Views\BookDetail\BookDetail.cshtml" />
     <Content Include="Views\AuthorDetail\AuthorDetail.cshtml" />
     <Content Include="Views\CreateAuthor\CreateAuthor.cshtml" />
+    <Content Include="Views\CreateBook\CreateBook.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

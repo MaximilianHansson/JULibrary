@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using ServiceLayer.Models;
 using RepositoryLayer.RepositoryManagers;
+using RepositoryLayer;
 
 namespace ServiceLayer.Managers
 {
@@ -41,5 +42,26 @@ namespace ServiceLayer.Managers
 			BookRepository bookManagerObj = new BookRepository();
 			return Mapper.Map<List<Book>>(bookManagerObj.List());
 		}
-	}	
+
+        public void createBook(string title, string ISBN, string pages, string publicationInfo, string signId, List<string> authors)
+        {
+            BookRepository bookManagerObj = new BookRepository();
+            Book newBook = new Book();
+            newBook.Title = title;
+            newBook.ISBN = ISBN;
+            newBook.pages = Convert.ToInt16(pages);
+            newBook.publicationinfo = publicationInfo;
+            newBook.SignId = Convert.ToInt32(signId);
+            AuthorRepository authorGrabber = new AuthorRepository();
+            List<AUTHOR> authorList = new List<AUTHOR>();
+            foreach (var author in authors)
+            {
+                var grabbedAuthor = authorGrabber.Read(Convert.ToInt32(author));
+                authorList.Add(grabbedAuthor);
+            }
+            newBook.Author = Mapper.Map<List<Author>>(authorList);
+
+            bookManagerObj.CreateNew(Mapper.Map<BOOK>(newBook));
+        }
+    }	
 }
