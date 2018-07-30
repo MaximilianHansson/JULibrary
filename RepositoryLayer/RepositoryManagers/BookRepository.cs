@@ -69,7 +69,10 @@ namespace RepositoryLayer.RepositoryManagers
         {
             using(var db = new LibDB())
             {
+                
                 db.BOOK.Add(book);
+                db.ChangeTracker.Entries<AUTHOR>().ToList().ForEach(a => a.State = EntityState.Unchanged);
+                db.ChangeTracker.Entries<CLASSIFICATION>().ToList().ForEach(a => a.State = EntityState.Unchanged);
                 db.SaveChanges();
             }
         }
