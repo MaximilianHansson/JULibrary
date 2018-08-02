@@ -20,7 +20,15 @@ namespace RepositoryLayer.RepositoryManagers
 				return db.AUTHOR.Include(x => x.BOOK).FirstOrDefault(x => x.Aid.Equals(Aid));
             }
         }
-		public List<AUTHOR> ReadAll(string name)
+        public AUTHOR ReadUninclude(int Aid)
+        {
+            using (var db = new LibDB())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+                return db.AUTHOR.FirstOrDefault(x => x.Aid.Equals(Aid));
+            }
+        }
+        public List<AUTHOR> ReadAll(string name)
 		{
 			using (var db = new LibDB())
 			{

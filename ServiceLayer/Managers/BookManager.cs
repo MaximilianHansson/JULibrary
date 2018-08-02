@@ -56,7 +56,7 @@ namespace ServiceLayer.Managers
             List<AUTHOR> authorList = new List<AUTHOR>();
             foreach (var author in authors)
             {
-                var grabbedAuthor = authorGrabber.Read(Convert.ToInt32(author));
+                var grabbedAuthor = authorGrabber.ReadUninclude(Convert.ToInt32(author));
                 authorList.Add(grabbedAuthor);
             }
             newBook.Author = Mapper.Map<List<Author>>(authorList);
