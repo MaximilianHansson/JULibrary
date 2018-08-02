@@ -41,8 +41,12 @@
                     <li class="media">
                         <div class="media-heading"><a href='bookDetail/?isbn=@book.ISBN'>@book.Title</a></div>
 						<div class="media-body">
-							Author: @book.Author.First().FirstName
-									@book.Author.First().LastName <br />
+							Author(s): @{
+                                foreach (var author in book.Author)
+                                {
+                                    @author.FirstName <text> </text> @author.LastName <text>, </text>
+                                }
+                            }<br />
 							ISBN:	@book.ISBN <br />
 							Publication info: @book.publicationinfo <br />
 							Pages:	@book.pages
