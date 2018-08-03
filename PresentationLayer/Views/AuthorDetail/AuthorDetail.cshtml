@@ -15,7 +15,7 @@
 		<ul>
 			@foreach (var book in Model.Book)
 			{
-			<li>@book.Title</li>
+			<li><a href='../bookDetail/?isbn=@book.ISBN'>@book.Title</a></li>
 			}
 		</ul>
 	}

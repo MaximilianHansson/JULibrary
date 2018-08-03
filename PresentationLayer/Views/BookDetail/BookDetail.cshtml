@@ -10,10 +10,17 @@
     <p>ISBN: @Model.ISBN</p>
     <p>Pages: @Model.pages</p>
     <p>Publication info: @Model.publicationinfo</p>
+    <p>Author(s): @{
+        foreach (var author in Model.Author)
+        {
+            <a href="../authorDetail/?Aid=@author.Aid">@author.FirstName @author.LastName,</a>
+        }
+    }
+    </p>
     }
     else
     {
-        <p>error reciving author</p>
+        <p>error reciving book</p>
     }
 }
 
