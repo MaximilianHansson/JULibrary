@@ -82,7 +82,18 @@ namespace RepositoryLayer.RepositoryManagers
             }
         }
 
-        public void Edit(BOOK book, String oldISBN)
+        public void Delete(string isbn)
+        {
+            using(var db = new LibDB())
+            {
+                var book = db.BOOK.SingleOrDefault(b => b.ISBN == isbn);
+                book.AUTHOR.Clear();
+                db.BOOK.Remove(book);
+                db.SaveChanges();
+            }
+        }
+
+        public void Edit(BOOK book, string oldISBN)
         {
             using (var db = new LibDB())
             {
@@ -99,8 +110,7 @@ namespace RepositoryLayer.RepositoryManagers
                     //db.ChangeTracker.Entries<CLASSIFICATION>().ToList().ForEach(a => a.State = EntityState.Unchanged);
                     //db.BOOK.SqlQuery("UPDATE BOOK SET pages = @pages, publicationinfo",)
 
-                    oldBook.AUTHOR.Clear();
-                    db.BOOK.Remove(oldBook); // error här för att BOOK_AUTHOR inte tas bort, se till att den includeras  aka gör en ny read funktion.
+                    Delete(oldISBN);
                     db.SaveChanges();
                     CreateNew(book);
                     db.SaveChanges();

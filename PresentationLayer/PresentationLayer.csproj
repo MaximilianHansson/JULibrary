@@ -183,6 +183,7 @@
     <Content Include="Views\CreateBook\CreateBook.cshtml" />
     <Content Include="Views\BookEdit\BookEdit.cshtml" />
     <Content Include="Views\BookEdit\Edited.cshtml" />
+    <Content Include="Views\BookDetail\Deleted.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

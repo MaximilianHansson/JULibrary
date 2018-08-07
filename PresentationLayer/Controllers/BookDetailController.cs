@@ -25,5 +25,12 @@ namespace PresentationLayer.Controllers
             
             return View("BookDetail", book);
         }
+        public ActionResult Delete(string isbn)
+        {
+            BookManager DBbook = new BookManager();
+
+            DBbook.deleteBook(isbn);
+            return View("Deleted");
+        }
     }
 }
