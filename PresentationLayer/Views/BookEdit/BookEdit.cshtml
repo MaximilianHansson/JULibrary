@@ -1,0 +1,48 @@
+﻿@model ServiceLayer.Models.Book
+@{
+    ViewBag.Title = "BookEdit";
+}
+
+<h2>BookEdit</h2>
+@{
+    if (!string.IsNullOrEmpty(Model.Title) && !string.IsNullOrEmpty(Model.ISBN) && Model.pages != null && !string.IsNullOrEmpty(Model.publicationinfo))
+    {
+        <form method="post" name="BookEdit">
+            <h4>Title</h4>
+            <input type="text" name="Title" value="@Model.Title" />
+
+            <h4>ISBN</h4>
+            <input type="text" name="newISBN" value="@Model.ISBN" />
+
+            <h4>Pages</h4>
+            <input type="text" name="Pages" value="@Model.pages" />
+
+            <h4>Publication info</h4>
+            <input type="text" name="PublicationInfo" value="@Model.publicationinfo" />
+
+            @*<h4>Classification SignId</h4>
+                <input type="text" name="SignId" value="@Model.SignId"/>*@
+            @{ 
+                var authorString = "";
+                foreach(var author in Model.Author)
+                {
+                    if(author != Model.Author.Last()) { authorString += (author.Aid + ","); }
+                    else { authorString += author.Aid; }
+
+                }
+            }
+            <h4>Authors ("ID,ID,ID etc")</h4>
+            <input type="text" name="Authors" value="@authorString"/>
+
+            <input type="hidden" name="oldISBN" value="@Model.ISBN" />
+
+            <button type="submit">Save</button>
+        </form>
+    }
+    else
+    {
+        <p>Missing information in Book</p>
+    }
+}
+
+
