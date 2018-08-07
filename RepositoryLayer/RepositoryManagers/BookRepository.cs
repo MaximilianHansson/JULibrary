@@ -82,6 +82,32 @@ namespace RepositoryLayer.RepositoryManagers
             }
         }
 
+        public void Edit(BOOK book, String oldISBN)
+        {
+            using (var db = new LibDB())
+            {
+                var oldBook = db.BOOK.SingleOrDefault(b => b.ISBN == oldISBN);
+                if(oldBook != null)
+                {
+                    //oldBook.ISBN = book.ISBN;
+                    //oldBook.pages = book.pages;
+                    //oldBook.publicationinfo = book.publicationinfo;
+                    //oldBook.Title = book.Title;
+                    //oldBook.AUTHOR = book.AUTHOR;
+
+                    //db.ChangeTracker.Entries<AUTHOR>().ToList().ForEach(a => a.State = EntityState.Unchanged);
+                    //db.ChangeTracker.Entries<CLASSIFICATION>().ToList().ForEach(a => a.State = EntityState.Unchanged);
+                    //db.BOOK.SqlQuery("UPDATE BOOK SET pages = @pages, publicationinfo",)
+
+                    oldBook.AUTHOR.Clear();
+                    db.BOOK.Remove(oldBook); // error här för att BOOK_AUTHOR inte tas bort, se till att den includeras  aka gör en ny read funktion.
+                    db.SaveChanges();
+                    CreateNew(book);
+                    db.SaveChanges();
+                }
+            }
+        }
+
 		private BOOK _bookObj = null;
 	}
 }
