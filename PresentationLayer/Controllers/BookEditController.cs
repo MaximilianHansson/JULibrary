@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ServiceLayer.Managers;
 using ServiceLayer.Models;
+using ServiceLayer.Validation;
 
 namespace PresentationLayer.Controllers
 {
@@ -29,10 +30,25 @@ namespace PresentationLayer.Controllers
         [HttpPost]
         public ActionResult Index()
         {
-            BookManager BookEdit = new BookManager();
-            BookEdit.editBook(Request["Title"], Request["newISBN"], Request["pages"], Request["PublicationInfo"], Request.Form["authors"].Split(',').ToList(), Request["oldISBN"]);
+            BookValidatior bookValidator = new BookValidatior();
+            var smartIsbn = (Request["newISBN"] == Request["oldISBN"])? "0" : Request["newISBN"];
+            var validateResult = bookValidator.validate(Request["Title"], smartIsbn, Request["pages"], Request["PublicationInfo"], Request.Form["authors"].Split(',').ToList());
+            if(validateResult.Count == 0)
+            {
+                BookManager BookEdit = new BookManager();
+                BookEdit.editBook(Request["Title"], Request["newISBN"], Request["pages"], Request["PublicationInfo"], Request.Form["authors"].Split(',').ToList(), Request["oldISBN"]);
 
-            return View("Edited");
+                return View("Edited");
+            }
+            else
+            {
+                ViewBag.Validation = validateResult;
+
+                Index(Request["oldISBN"]);
+
+                return View("bookEdit");
+            }
+            
         }
     }
 }

@@ -43,6 +43,13 @@
     {
         <p>Missing information in Book</p>
     }
+    if (ViewBag.Validation != null)
+    {
+        foreach (var error in ViewBag.Validation)
+        {
+            <p>@error</p>
+        }
+    }
 }
 
 
