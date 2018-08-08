@@ -25,4 +25,14 @@
     <input type="text" name="Authors" />
 
     <button type="submit">Create</button>
+
+    @{ 
+        if(ViewBag.Validation != null)
+        {
+            foreach(var error in ViewBag.Validation)
+            {
+                <p>@error</p>
+            }
+        }
+    }
 </form>

@@ -25,7 +25,9 @@ namespace RepositoryLayer.RepositoryManagers
             using (var db = new LibDB())
             {
                 db.Configuration.LazyLoadingEnabled = false;
-                return db.AUTHOR.FirstOrDefault(x => x.Aid.Equals(Aid));
+                try { return db.AUTHOR.FirstOrDefault(x => x.Aid.Equals(Aid)); }
+                catch { return null; }
+                
             }
         }
         public List<AUTHOR> ReadAll(string name)

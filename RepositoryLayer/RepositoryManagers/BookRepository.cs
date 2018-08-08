@@ -22,8 +22,16 @@ namespace RepositoryLayer.RepositoryManagers
 			using(var db = new LibDB())
 			{
                 db.Configuration.LazyLoadingEnabled = false;
-                var query = db.BOOK.Include(b => b.AUTHOR).First(b => b.ISBN.Equals(isbn));
-                return query;
+                try
+                {
+                    var query = db.BOOK.Include(b => b.AUTHOR).First(b => b.ISBN.Equals(isbn));
+                    return query;
+                }
+                catch
+                {
+                    return null;
+                }
+                
 			}
 		}
 
