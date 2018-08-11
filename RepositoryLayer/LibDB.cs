@@ -16,6 +16,7 @@ namespace RepositoryLayer
         public virtual DbSet<AUTHOR> AUTHOR { get; set; }
         public virtual DbSet<BOOK> BOOK { get; set; }
         public virtual DbSet<CLASSIFICATION> CLASSIFICATION { get; set; }
+        public virtual DbSet<ADMINISTARTOR> ADMINISTARTOR { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
