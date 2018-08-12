@@ -36,5 +36,17 @@ namespace ServiceLayer.Managers
 			AuthorRepository authorManagerObj = new AuthorRepository();
 			authorManagerObj.CreateNew(firstName, lastName, birthYear);
 		}
+
+		public void deleteAuthor(int Aid)
+		{
+			AuthorRepository authorManagerObj = new AuthorRepository();
+			authorManagerObj.Delete(Aid);
+		}
+
+		public void editAuthor(string firstName, string lastName, string birthYear, int Aid)
+		{
+			AuthorRepository authorManagerObj = new AuthorRepository();
+			authorManagerObj.Edit(firstName, lastName, birthYear, Aid);
+		}
 	}
 }

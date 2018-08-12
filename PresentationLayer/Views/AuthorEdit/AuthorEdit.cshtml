@@ -1,0 +1,16 @@
+﻿
+@{
+	ViewBag.Title = "AuthorEdit";
+}
+
+<h2>AuthorEdit</h2>
+
+<form method="post" name="newAuthor">
+	<h4>First name</h4>
+	<input type="text" name="firstName" placeholder="First name" value="@Model.FirstName" />
+	<h4>Last name</h4>
+	<input type="text" name="lastName" placeholder="Last name" value="@Model.LastName" />
+	<h4>Birth year</h4>
+	<input type="text" name="birthYear" placeholder="Birth year" value="@Model.BirthYear" />
+	<button type="submit">Add</button>
+</form>
