@@ -22,8 +22,16 @@ namespace RepositoryLayer.RepositoryManagers
 			using(var db = new LibDB())
 			{
                 db.Configuration.LazyLoadingEnabled = false;
-                var query = db.BOOK.Include(b => b.AUTHOR).First(b => b.ISBN.Equals(isbn));
-                return query;
+                try
+                {
+                    var query = db.BOOK.Include(b => b.AUTHOR).First(b => b.ISBN.Equals(isbn));
+                    return query;
+                }
+                catch
+                {
+                    return null;
+                }
+                
 			}
 		}
 
@@ -79,6 +87,42 @@ namespace RepositoryLayer.RepositoryManagers
                 db.ChangeTracker.Entries<AUTHOR>().ToList().ForEach(a => a.State = EntityState.Unchanged);
                 db.ChangeTracker.Entries<CLASSIFICATION>().ToList().ForEach(a => a.State = EntityState.Unchanged);
                 db.SaveChanges();
+            }
+        }
+
+        public void Delete(string isbn)
+        {
+            using(var db = new LibDB())
+            {
+                var book = db.BOOK.SingleOrDefault(b => b.ISBN == isbn);
+                book.AUTHOR.Clear();
+                db.BOOK.Remove(book);
+                db.SaveChanges();
+            }
+        }
+
+        public void Edit(BOOK book, string oldISBN)
+        {
+            using (var db = new LibDB())
+            {
+                var oldBook = db.BOOK.SingleOrDefault(b => b.ISBN == oldISBN);
+                if(oldBook != null)
+                {
+                    //oldBook.ISBN = book.ISBN;
+                    //oldBook.pages = book.pages;
+                    //oldBook.publicationinfo = book.publicationinfo;
+                    //oldBook.Title = book.Title;
+                    //oldBook.AUTHOR = book.AUTHOR;
+
+                    //db.ChangeTracker.Entries<AUTHOR>().ToList().ForEach(a => a.State = EntityState.Unchanged);
+                    //db.ChangeTracker.Entries<CLASSIFICATION>().ToList().ForEach(a => a.State = EntityState.Unchanged);
+                    //db.BOOK.SqlQuery("UPDATE BOOK SET pages = @pages, publicationinfo",)
+
+                    Delete(oldISBN);
+                    db.SaveChanges();
+                    CreateNew(book);
+                    db.SaveChanges();
+                }
             }
         }
 

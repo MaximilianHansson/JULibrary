@@ -63,5 +63,32 @@ namespace ServiceLayer.Managers
 
             bookManagerObj.CreateNew(Mapper.Map<BOOK>(newBook));
         }
+
+        public void deleteBook(string isbn)
+        {
+            BookRepository bookManagerObj = new BookRepository();
+
+            bookManagerObj.Delete(isbn);
+        }
+
+        public void editBook(string title, string ISBN, string pages, string publicationInfo, List<string> authors, string oldISBN)
+        {
+            BookRepository bookManagerObj = new BookRepository();
+            Book newBook = new Book();
+            newBook.Title = title;
+            newBook.ISBN = ISBN;
+            newBook.pages = Convert.ToInt16(pages);
+            newBook.publicationinfo = publicationInfo;
+            AuthorRepository authorGrabber = new AuthorRepository();
+            List<AUTHOR> authorList = new List<AUTHOR>();
+            foreach (var author in authors)
+            {
+                var grabbedAuthor = authorGrabber.ReadUninclude(Convert.ToInt32(author));
+                authorList.Add(grabbedAuthor);
+            }
+            newBook.Author = Mapper.Map<List<Author>>(authorList);
+
+            bookManagerObj.Edit(Mapper.Map<BOOK>(newBook), oldISBN);
+        }
     }	
 }

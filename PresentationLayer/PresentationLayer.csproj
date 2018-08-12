@@ -153,6 +153,7 @@
     <Compile Include="Controllers\AuthorEditController.cs" />
     <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\BookDetailController.cs" />
+    <Compile Include="Controllers\BookEditController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\CreateAuthorController.cs" />
     <Compile Include="Controllers\CreateBookController.cs" />
@@ -183,6 +184,9 @@
     <Content Include="Views\CreateBook\CreateBook.cshtml" />
     <Content Include="Views\AuthorEdit\AuthorEdit.cshtml" />
     <Content Include="Views\AuthorEdit\Edited.cshtml" />
+    <Content Include="Views\BookEdit\BookEdit.cshtml" />
+    <Content Include="Views\BookEdit\Edited.cshtml" />
+    <Content Include="Views\BookDetail\Deleted.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

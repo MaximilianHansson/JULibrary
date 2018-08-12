@@ -18,11 +18,19 @@ namespace PresentationLayer.Controllers
 
             book = DBbook.getBook(isbn);
 
-            //if(book.PublicationYear == null){book.PublicationYear = "unknown";}
-            if(book.pages == null) { book.pages = 0; }
-            if(book.publicationinfo == null) { book.publicationinfo = "unknown"; }
+            if (book.Title == null) { book.Title = "unknown"; }
+            if (book.PublicationYear == null){book.PublicationYear = "unknown";}
+            if (book.pages == null) { book.pages = 0; }
+            if (book.publicationinfo == null) { book.publicationinfo = "unknown"; }
             
             return View("BookDetail", book);
+        }
+        public ActionResult Delete(string isbn)
+        {
+            BookManager DBbook = new BookManager();
+
+            DBbook.deleteBook(isbn);
+            return View("Deleted");
         }
     }
 }
