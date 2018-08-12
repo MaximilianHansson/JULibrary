@@ -8,16 +8,17 @@ using System.Data.SqlClient;
 
 namespace RepositoryLayer.RepositoryManagers
 {
-    public class AuthorRepository
-    {
+	public class AuthorRepository
+	{
 		public AuthorRepository() { }
 
-        public AUTHOR Read(int Aid)
-        {
-            using (var db = new LibDB())
-            {
+		public AUTHOR Read(int Aid)
+		{
+			using (var db = new LibDB())
+			{
 				db.Configuration.LazyLoadingEnabled = false;
 				return db.AUTHOR.Include(x => x.BOOK).FirstOrDefault(x => x.Aid.Equals(Aid));
+
             }
         }
         public AUTHOR ReadUninclude(int Aid)
@@ -46,7 +47,7 @@ namespace RepositoryLayer.RepositoryManagers
 				db.Configuration.LazyLoadingEnabled = false;
 				var query = db.AUTHOR.ToList();
 				return query;
-			}		
+			}
 		}
 
 		public void CreateNew(string firstName, string lastName, string birthYear)
@@ -67,6 +68,41 @@ namespace RepositoryLayer.RepositoryManagers
 			//author.BirthYear = birthYear;
 
 
+		}
+
+		public void Delete(int Aid)
+		{
+			using (var db = new LibDB())
+			{ 
+				//var author = this.Read(Aid);
+				//db.AUTHOR.Remove(author);
+				//db.SaveChanges();
+				db.Configuration.LazyLoadingEnabled = false;
+				//This line is the same as int "Read", will get error if i try to call it as commented out bellow
+				//var author = db.AUTHOR.Include(x => x.BOOK).FirstOrDefault(x => x.Aid.Equals(Aid));
+				var author = db.AUTHOR.SingleOrDefault(a => a.Aid == Aid);
+				db.AUTHOR.Remove(author);
+				db.SaveChanges();
+			}
+		}
+
+		public void Edit(string firstName, string lastName, string birthYear, int Aid)
+		{
+			using(var db = new LibDB())
+			{
+
+				//Remove author all together from database
+				db.Configuration.LazyLoadingEnabled = false;
+				var oldAuthor = db.AUTHOR.FirstOrDefault(x => x.Aid.Equals(Aid));
+				db.AUTHOR.Remove(oldAuthor);
+				//this.Delete(oldAuthor.Aid);
+				oldAuthor.FirstName = firstName;
+				oldAuthor.LastName = lastName;
+				oldAuthor.BirthYear = birthYear;
+
+				db.Entry(oldAuthor).State = EntityState.Modified;
+				db.SaveChanges();
+			}
 		}
 	}
 }
