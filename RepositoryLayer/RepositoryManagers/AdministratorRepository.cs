@@ -20,5 +20,13 @@ namespace RepositoryLayer.RepositoryManagers
                 db.SaveChanges();
             }
         }
+
+        public ADMINISTARTOR Read(string username)
+        {
+            using(var db = new LibDB())
+            {
+                return db.ADMINISTARTOR.FirstOrDefault(a => a.username.Equals(username));
+            }
+        }
     }
 }

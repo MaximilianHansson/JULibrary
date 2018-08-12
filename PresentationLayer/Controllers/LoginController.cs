@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ServiceLayer.Models;
+using ServiceLayer.Managers;
 
 namespace PresentationLayer.Controllers
 {
@@ -12,6 +14,15 @@ namespace PresentationLayer.Controllers
         public ActionResult Index()
         {
             return View("Login");
+        }
+
+        [HttpPost]
+        public ActionResult Index(string userName, string password)
+        {
+            AdministratorManager adminManager = new AdministratorManager();
+            var admin = adminManager.login(userName, password);
+            Session["User"] = admin.username;
+            return View("Login", admin);
         }
     }
 }

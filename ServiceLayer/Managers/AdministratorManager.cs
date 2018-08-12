@@ -33,5 +33,27 @@ namespace ServiceLayer.Managers
             adminReposObj.CreateNew(Mapper.Map<ADMINISTARTOR>(newAdmin));
             
         }
+
+        public Administrator login(string username, string password)
+        {
+            AdministratorRepository adminReposObj = new AdministratorRepository();
+
+            var dbAdmin = adminReposObj.Read(username);
+            var passwordHash = "";
+
+            using (Rfc2898DeriveBytes deriveBytes = new Rfc2898DeriveBytes(password, Convert.FromBase64String(dbAdmin.salt)))
+            {
+                passwordHash = Convert.ToBase64String(deriveBytes.GetBytes(20));
+                if(passwordHash == dbAdmin.passwordHash)
+                {
+                    return Mapper.Map<Administrator>(dbAdmin);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+
+        }
     }
 }
