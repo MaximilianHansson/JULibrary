@@ -22,5 +22,12 @@ namespace PresentationLayer.Controllers
 
 			return View("AuthorDetail", author);
         }
+
+		public ActionResult Delete(int Aid)
+		{
+			AuthorManager DBauthor = new AuthorManager();
+			DBauthor.deleteAuthor(Aid);
+			return View("Deleted");
+		}
     }
 }

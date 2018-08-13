@@ -19,9 +19,9 @@ namespace ServiceLayer.Validation
 			{
 				errors.Add("First name missing");
 			}
-			if (firstName.Any(char.IsDigit))
+			if (!firstName.All(char.IsLetter))
 			{
-				errors.Add("First name can't have numbers");
+				errors.Add("First name can only have letters");
 			}
 
 			//lastName
@@ -29,13 +29,13 @@ namespace ServiceLayer.Validation
 			{
 				errors.Add("Last name missing");
 			}
-			if (lastName.Any(char.IsDigit))
+			if (!lastName.All(char.IsLetter))
 			{
-				errors.Add("Last name can't have numbers");
+				errors.Add("Last name can only have letters");
 			}
 
 			//birthYear
-			if (!birthYear.Any(char.IsDigit))
+			if (!birthYear.All(char.IsDigit))
 			{
 				errors.Add("Birth year needs to be a number");
 			}
