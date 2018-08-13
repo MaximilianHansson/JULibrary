@@ -149,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\AuthorDetailController.cs" />
     <Compile Include="Controllers\AuthorEditController.cs" />
     <Compile Include="Controllers\AuthorsController.cs" />
@@ -158,6 +159,8 @@
     <Compile Include="Controllers\CreateAuthorController.cs" />
     <Compile Include="Controllers\CreateBookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\SignUpController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,6 +191,9 @@
     <Content Include="Views\BookEdit\Edited.cshtml" />
     <Content Include="Views\BookDetail\Deleted.cshtml" />
     <Content Include="Views\AuthorDetail\Deleted.cshtml" />
+    <Content Include="Views\Admins\Admins.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\SignUp\SignUp.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -51,12 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADMINISTARTOR.cs" />
     <Compile Include="AUTHOR.cs" />
     <Compile Include="BOOK.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="CLASSIFICATION.cs" />
     <Compile Include="LibDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryManagers\AdministratorRepository.cs" />
     <Compile Include="RepositoryManagers\AuthorRepository.cs" />
     <Compile Include="RepositoryManagers\BookRepository.cs" />
   </ItemGroup>
