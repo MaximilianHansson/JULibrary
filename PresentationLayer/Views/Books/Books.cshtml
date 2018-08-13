@@ -28,8 +28,13 @@
             </div>
 		</form>
 	</div>
-
-    <a href="~/CreateBook">Create new Book</a>
+    @{
+        if (Session["User"] != null)
+        {
+            <a href="~/CreateBook">Create new Book</a>
+        }
+    }
+    
 
 	<!-- loop through each of your products and display it however you want. we're just printing the name here -->
 	<ul class="media-list">

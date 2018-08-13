@@ -18,10 +18,14 @@
 			<li><a href='../bookDetail/?isbn=@book.ISBN'>@book.Title</a></li>
 			}
 		</ul>
-		<a href="../AuthorEdit/?Aid=@Model.Aid">Edit author</a>
-	}
-	else
-	{
+        if (Session["User"] != null)
+        {
+            <a href="../AuthorEdit/?Aid=@Model.Aid">Edit author</a>
+        }
+
+    }
+    else
+    {
 		<p>Error reciving author</p>
 	}
 }
