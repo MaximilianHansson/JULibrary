@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ServiceLayer.Managers;
+using ServiceLayer.Models;
 
 namespace PresentationLayer.Controllers
 {
@@ -11,7 +13,13 @@ namespace PresentationLayer.Controllers
         // GET: Admins
         public ActionResult Index()
         {
-            return View();
+			AdministratorManager DBadmin = new AdministratorManager();
+			List<Administrator> admins = new List<Administrator>();
+			admins = DBadmin.getAllAdmins();
+			//List<Administrator> admins = DBadmin.getAllAdmins();
+
+
+			return View("Admins", admins);
         }
     }
 }
