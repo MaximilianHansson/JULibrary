@@ -47,8 +47,10 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Configuration\AutoMapperConfig.cs" />
+    <Compile Include="Managers\AdministratorManager.cs" />
     <Compile Include="Managers\AuthorManager.cs" />
     <Compile Include="Managers\BookManager.cs" />
+    <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Classification.cs" />
