@@ -55,5 +55,12 @@ namespace ServiceLayer.Managers
             }
 
         }
-    }
+
+		public List<Administrator> getAllAdmins()
+		{
+			AdministratorRepository adminManagerObj = new AdministratorRepository();
+			return Mapper.Map<List<Administrator>>(adminManagerObj.List());
+		}
+
+	}
 }

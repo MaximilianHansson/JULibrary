@@ -28,5 +28,15 @@ namespace RepositoryLayer.RepositoryManagers
                 return db.ADMINISTARTOR.FirstOrDefault(a => a.username.Equals(username));
             }
         }
+
+		public List<ADMINISTARTOR> List()
+		{
+			using (var db = new LibDB())
+			{
+				// May need to use an include
+				return db.ADMINISTARTOR.ToList();
+			}
+
+		}
     }
 }
