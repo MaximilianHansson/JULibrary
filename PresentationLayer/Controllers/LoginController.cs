@@ -16,6 +16,12 @@ namespace PresentationLayer.Controllers
             return View("Login");
         }
 
+        public RedirectResult Logout(string pathBack)
+        {
+            Session.Remove("User");
+            return Redirect(pathBack);
+        }
+
         [HttpPost]
         public ActionResult Index(string userName, string password)
         {

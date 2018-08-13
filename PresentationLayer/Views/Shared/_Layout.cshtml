@@ -26,6 +26,7 @@
 					<li>@Html.ActionLink("Authors", "Index", "Authors", new { area = "" }, new { @class = "navbar-inverse" })</li>
                     <li>@Html.ActionLink("Admins", "Index", "Admins", new { area = "" }, new { @class = "navbar-inverse" })</li>
 					<li>@Html.ActionLink("Login", "Index", "Login", new { area = "" }, new { @class = "navbar-inverse" })</li>
+                    <li>@Html.ActionLink("Logout", "Logout", "Login", new { area = "", pathBack = Request.RawUrl }, new { @class = "navbar-inverse" })</li>
 				</ul>
 			</div>
 		</div>
