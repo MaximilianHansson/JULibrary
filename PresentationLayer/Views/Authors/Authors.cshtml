@@ -23,7 +23,12 @@
 		</form>
 	</div>
 
-	<a href="~/CreateAuthor">Create new author</a>
+	@{
+        if (Session["User"] != null)
+        {
+            <a href="~/CreateAuthor">Create new Author</a>
+        }
+    }
 
 	<ul>
 		@{
