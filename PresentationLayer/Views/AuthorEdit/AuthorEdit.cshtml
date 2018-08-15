@@ -12,5 +12,16 @@
 	<input type="text" name="lastName" placeholder="Last name" value="@Model.LastName" />
 	<h4>Birth year</h4>
 	<input type="text" name="birthYear" placeholder="Birth year" value="@Model.BirthYear" />
-	<button type="submit">Add</button>
+	<button type="submit">Save</button>
+
 </form>
+
+@{
+	if(ViewBag.Validation != null)
+	{
+		foreach(var error in ViewBag.Validation)
+		{
+			<p style="color: red">@error</p>
+		}
+	}
+}

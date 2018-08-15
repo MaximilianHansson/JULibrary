@@ -25,6 +25,11 @@ namespace ServiceLayer.Validation
             //ISBN
             if (!(ISBN == "" || ISBN == null))
             {
+				if (!ISBN.All(char.IsDigit))
+				{
+					errors.Add("ISBN needs to be a number");
+				}
+
                 if (bookTester.Read(ISBN) != null)
                 {
                     errors.Add("ISBN taken");
@@ -33,9 +38,8 @@ namespace ServiceLayer.Validation
             else { errors.Add("ISBN missing"); }
 
             //Pages
-            if (!(pages == "" || pages == null)) {
-                short result;                
-                if(!(short.TryParse(pages, out result)))
+            if (!(pages == "" || pages == null)) {              
+                if(!pages.All(char.IsDigit))
                 {
                     errors.Add("Pages not a number");
                 }

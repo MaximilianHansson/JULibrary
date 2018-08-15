@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ServiceLayer.Managers;
 using ServiceLayer.Models;
+using ServiceLayer.Validation;
 
 namespace PresentationLayer.Controllers
 {
@@ -41,11 +42,27 @@ namespace PresentationLayer.Controllers
 			var AidStr = Request.QueryString["Aid"];
 			var Aid = Convert.ToInt32(AidStr);
 
-			AuthorManager author = new AuthorManager();
-			author.editAuthor(firstName, lastName, birthYear, Aid);
+			//Testing with model
+			AuthorManager DBauthor = new AuthorManager();
+			Author author = new Author();
 
-			//This is the only thing that doesen't work atm
-			return View("Edited");
+			author = DBauthor.getAuthor(Aid);
+
+			//Validation
+			AuthorValidator authorValidator = new AuthorValidator();
+			var validResualt = authorValidator.validate(firstName, lastName, birthYear);
+			if (validResualt.Count == 0)
+			{
+				//Post to database
+				AuthorManager editedAuthor = new AuthorManager();
+				editedAuthor.editAuthor(firstName, lastName, birthYear, Aid);
+				return View("Edited");
+			}
+			else
+			{
+				ViewBag.Validation = validResualt;
+				return View("authorEdit", author);
+			}
 		}
 	}
 }

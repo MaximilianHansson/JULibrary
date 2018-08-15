@@ -1,10 +1,10 @@
 ﻿@model ServiceLayer.Models.Author
 
 @{
-    ViewBag.Title = "AuthorDetail";
+	ViewBag.Title = "AuthorDetail";
 }
 
-@{ 
+@{
 	if (!string.IsNullOrEmpty(Model.LastName))
 	{
 		<h2>@Model.FirstName @Model.LastName</h2>
@@ -15,7 +15,7 @@
 		<ul>
 			@foreach (var book in Model.Book)
 			{
-			<li><a href='../bookDetail/?isbn=@book.ISBN'>@book.Title</a></li>
+				<li><a href='../bookDetail/?isbn=@book.ISBN'>@book.Title</a></li>
 			}
 		</ul>
         if (Session["User"] != null)
@@ -27,5 +27,11 @@
     else
     {
 		<p>Error reciving author</p>
+    
 	}
+
+	// Admin only
+	<a href="../AuthorEdit/?Aid=@Model.Aid">Edit author</a>
+	<br />
+	<a href="../AuthorDetail/Delete/?Aid=@Model.Aid">Delete author</a>
 }

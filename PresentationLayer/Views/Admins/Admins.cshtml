@@ -1,7 +1,19 @@
 ﻿
 @{
-    ViewBag.Title = "Admins";
+	ViewBag.Title = "Admins";
 }
 
 <h2>Admins</h2>
 
+@{
+	if(Model != null) { 
+		<ul>
+			@foreach (var admin in Model)
+			{
+				<li>@admin.username</li>
+			}
+		</ul>
+	}
+}
+
+<a href="../SignUp">Sign up new admin</a>

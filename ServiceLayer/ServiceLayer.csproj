@@ -55,6 +55,7 @@
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Classification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\AuthorValidator.cs" />
     <Compile Include="Validation\BookValidatior.cs" />
   </ItemGroup>
   <ItemGroup>
