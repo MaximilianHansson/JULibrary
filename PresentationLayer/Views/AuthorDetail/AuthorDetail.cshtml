@@ -21,6 +21,8 @@
         if (Session["User"] != null)
         {
             <a href="../AuthorEdit/?Aid=@Model.Aid">Edit author</a>
+	        <br />
+	        <a href="../AuthorDetail/Delete/?Aid=@Model.Aid">Delete author</a>
         }
 
     }
@@ -29,9 +31,4 @@
 		<p>Error reciving author</p>
     
 	}
-
-	// Admin only
-	<a href="../AuthorEdit/?Aid=@Model.Aid">Edit author</a>
-	<br />
-	<a href="../AuthorDetail/Delete/?Aid=@Model.Aid">Delete author</a>
 }
