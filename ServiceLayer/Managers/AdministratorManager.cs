@@ -41,6 +41,13 @@ namespace ServiceLayer.Managers
             var dbAdmin = adminReposObj.Read(username);
             var passwordHash = "";
 
+			//if user doesen't exist
+			if(dbAdmin == null)
+			{
+				return null;
+			}
+
+			//check if username matches with password
             using (Rfc2898DeriveBytes deriveBytes = new Rfc2898DeriveBytes(password, Convert.FromBase64String(dbAdmin.salt)))
             {
                 passwordHash = Convert.ToBase64String(deriveBytes.GetBytes(20));

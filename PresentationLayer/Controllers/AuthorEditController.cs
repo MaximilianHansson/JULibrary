@@ -50,8 +50,8 @@ namespace PresentationLayer.Controllers
 
 			//Validation
 			AuthorValidator authorValidator = new AuthorValidator();
-			var validResualt = authorValidator.validate(firstName, lastName, birthYear);
-			if (validResualt.Count == 0)
+			var validResult = authorValidator.validate(firstName, lastName, birthYear);
+			if (validResult.Count == 0)
 			{
 				//Post to database
 				AuthorManager editedAuthor = new AuthorManager();
@@ -60,7 +60,7 @@ namespace PresentationLayer.Controllers
 			}
 			else
 			{
-				ViewBag.Validation = validResualt;
+				ViewBag.Validation = validResult;
 				return View("authorEdit", author);
 			}
 		}

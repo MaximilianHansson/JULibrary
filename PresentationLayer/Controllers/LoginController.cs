@@ -27,8 +27,17 @@ namespace PresentationLayer.Controllers
         {
             AdministratorManager adminManager = new AdministratorManager();
             var admin = adminManager.login(userName, password);
-            Session["User"] = admin.username;
-            return View("Login", admin);
+
+			if(admin != null)
+			{
+				Session["User"] = admin.username;
+				return View("Login", admin);
+			}
+			else
+			{
+				return View("Login");
+			}
+            
         }
     }
 }

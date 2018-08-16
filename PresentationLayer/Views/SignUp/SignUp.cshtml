@@ -1,15 +1,29 @@
 ﻿
 @{
-    ViewBag.Title = "SignUp";
+	ViewBag.Title = "SignUp";
 }
 
 <h2>SignUp</h2>
 
 <form method="post">
-    <h4>Username: </h4>
-    <input type="text" name="userName" /><br />
+	<h4>Username: </h4>
+	<input type="text" name="userName" /><br />
 
-    <h4>Password: </h4>
-    <input type="password" name="password" /><br /><br />
-    <button type="submit">Submit</button>
+	<h4>Password: </h4>
+	<input type="password" name="password" /><br /><br />
+	<button type="submit">Submit</button>
 </form>
+
+@{
+	if (ViewBag.Validation != null)
+	{
+		foreach (var error in ViewBag.Validation)
+		{
+			<p style="color: red">@error</p>
+		}
+	}
+	else if(ViewBag.Success != null)
+	{
+		<p style="color: green">New admin successfully signed up</p>
+	}
+}

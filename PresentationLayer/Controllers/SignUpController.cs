@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ServiceLayer.Models;
 using ServiceLayer.Managers;
+using ServiceLayer.Validation;
 
 namespace PresentationLayer.Controllers
 {
@@ -19,8 +20,23 @@ namespace PresentationLayer.Controllers
         [HttpPost]
         public ActionResult Index(string userName, string password)
         {
-            AdministratorManager adminManager = new AdministratorManager();
-            adminManager.createAdministrator(userName, password);
+			//validation
+			SignUpValidator validator = new SignUpValidator();
+			var validResult = validator.validate(userName, password);
+
+			if(validResult.Count == 0)
+			{
+				//Creating a new admin
+				AdministratorManager adminManager = new AdministratorManager();
+				adminManager.createAdministrator(userName, password);
+				ViewBag.Success = 1;
+			}
+			else
+			{
+				ViewBag.Validation = validResult;
+			}
+
+			
             return View("SignUp");
         }
     }
