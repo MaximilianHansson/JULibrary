@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using ServiceLayer.Models;
 using RepositoryLayer.RepositoryManagers;
+using RepositoryLayer;
 
 namespace ServiceLayer.Managers
 {
@@ -34,7 +35,11 @@ namespace ServiceLayer.Managers
 		public void createAuthor(string firstName, string lastName, string birthYear)
 		{
 			AuthorRepository authorManagerObj = new AuthorRepository();
-			authorManagerObj.CreateNew(firstName, lastName, birthYear);
+            AUTHOR author = new AUTHOR();
+            author.FirstName = firstName;
+            author.LastName = lastName;
+            author.BirthYear = birthYear;
+			authorManagerObj.CreateNew(author);
 		}
 
 		public void deleteAuthor(int Aid)
@@ -46,7 +51,12 @@ namespace ServiceLayer.Managers
 		public void editAuthor(string firstName, string lastName, string birthYear, int Aid)
 		{
 			AuthorRepository authorManagerObj = new AuthorRepository();
-			authorManagerObj.Edit(firstName, lastName, birthYear, Aid);
+            AUTHOR author = new AUTHOR();
+            author.FirstName = firstName;
+            author.LastName = lastName;
+            author.BirthYear = birthYear;
+            author.Aid = Aid;
+            authorManagerObj.Edit(author);
 		}
 	}
 }

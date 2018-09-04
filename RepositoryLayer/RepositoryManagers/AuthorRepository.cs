@@ -50,23 +50,14 @@ namespace RepositoryLayer.RepositoryManagers
 			}
 		}
 
-		public void CreateNew(string firstName, string lastName, string birthYear)
+		public void CreateNew(AUTHOR author)
 		{
 			using (var db = new LibDB())
 			{
-				var author = new AUTHOR();
-				author.FirstName = firstName;
-				author.LastName = lastName;
-				author.BirthYear = birthYear;
 
 				db.AUTHOR.Add(author);
-				db.SaveChanges();
+                db.SaveChanges();
 			}
-			//var author = new AUTHOR();
-			//author.FirstName = firstName;
-			//author.LastName = lastName;
-			//author.BirthYear = birthYear;
-
 
 		}
 
@@ -86,21 +77,21 @@ namespace RepositoryLayer.RepositoryManagers
 			}
 		}
 
-		public void Edit(string firstName, string lastName, string birthYear, int Aid)
+		public void Edit(AUTHOR newAuthor)
 		{
 			using(var db = new LibDB())
 			{
 
 				//Remove author all together from database
 				db.Configuration.LazyLoadingEnabled = false;
-				var oldAuthor = db.AUTHOR.FirstOrDefault(x => x.Aid.Equals(Aid));
-				db.AUTHOR.Remove(oldAuthor);
-				//this.Delete(oldAuthor.Aid);
-				oldAuthor.FirstName = firstName;
-				oldAuthor.LastName = lastName;
-				oldAuthor.BirthYear = birthYear;
+				var editedAuthor = db.AUTHOR.FirstOrDefault(x => x.Aid.Equals(newAuthor.Aid));
+				db.AUTHOR.Remove(editedAuthor);
+                //this.Delete(oldAuthor.Aid);
+                editedAuthor.FirstName = newAuthor.FirstName;
+                editedAuthor.LastName = newAuthor.LastName;
+                editedAuthor.BirthYear = newAuthor.BirthYear;
 
-				db.Entry(oldAuthor).State = EntityState.Modified;
+				db.Entry(editedAuthor).State = EntityState.Modified;
 				db.SaveChanges();
 			}
 		}
