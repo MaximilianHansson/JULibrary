@@ -64,15 +64,9 @@ namespace RepositoryLayer.RepositoryManagers
 		public void Delete(int Aid)
 		{
 			using (var db = new LibDB())
-			{ 
-				//var author = this.Read(Aid);
-				//db.AUTHOR.Remove(author);
-				//db.SaveChanges();
+			{
 				db.Configuration.LazyLoadingEnabled = false;
-				//This line is the same as int "Read", will get error if i try to call it as commented out bellow
-				//var author = db.AUTHOR.Include(x => x.BOOK).FirstOrDefault(x => x.Aid.Equals(Aid));
-				var author = db.AUTHOR.SingleOrDefault(a => a.Aid == Aid);
-				db.AUTHOR.Remove(author);
+				db.Database.ExecuteSqlCommand("DELETE FROM dbo.AUTHOR WHERE Aid=@aid", new SqlParameter("@aid", Aid));
 				db.SaveChanges();
 			}
 		}
