@@ -9,7 +9,7 @@ namespace RepositoryLayer
     {
         public LibDB()
 			//Fix from Peter LG
-            : base("data source=libdb.cgonxecdluoj.eu-west-1.rds.amazonaws.com;initial catalog=dbGroupDM;persist security info=True;user id=student11;password=sdgfewethyttd;MultipleActiveResultSets=True;App=EntityFramework")
+            : base("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Serverside;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
         {
         }
 

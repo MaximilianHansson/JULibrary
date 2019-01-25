@@ -13,7 +13,10 @@ namespace PresentationLayer.Controllers
         // GET: Admins
         public ActionResult Index()
         {
-			AdministratorManager DBadmin = new AdministratorManager();
+            if (Session["User"] == null)
+            { return View("~/Views/Shared/Unauthorized.cshtml"); }
+
+            AdministratorManager DBadmin = new AdministratorManager();
 			List<Administrator> admins = new List<Administrator>();
 			admins = DBadmin.getAllAdmins();
 			//List<Administrator> admins = DBadmin.getAllAdmins();

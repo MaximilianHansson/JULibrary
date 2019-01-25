@@ -25,7 +25,10 @@ namespace PresentationLayer.Controllers
 
 		public ActionResult Delete(int Aid)
 		{
-			AuthorManager DBauthor = new AuthorManager();
+            if (Session["User"] == null)
+            { return View("~/Views/Shared/Unauthorized.cshtml"); }
+
+            AuthorManager DBauthor = new AuthorManager();
 			DBauthor.deleteAuthor(Aid);
 			return View("Deleted");
 		}

@@ -14,6 +14,9 @@ namespace PresentationLayer.Controllers
         // GET: BookEdit
         public ActionResult Index(string isbn)
         {
+            if (Session["User"] == null)
+            { return View("~/Views/Shared/Unauthorized.cshtml"); }
+
             BookManager DBbook = new BookManager();
             Book book = new Book();
 
@@ -30,6 +33,9 @@ namespace PresentationLayer.Controllers
         [HttpPost]
         public ActionResult Index()
         {
+            if (Session["User"] == null)
+            { return View("~/Views/Shared/Unauthorized.cshtml"); }
+
             BookValidatior bookValidator = new BookValidatior();
             var smartIsbn = (Request["newISBN"] == Request["oldISBN"])? "0" : Request["newISBN"];
             var validateResult = bookValidator.validate(Request["Title"], smartIsbn, Request["pages"], Request["PublicationInfo"], Request.Form["authors"].Split(',').ToList());

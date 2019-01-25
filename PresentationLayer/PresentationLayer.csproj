@@ -194,6 +194,7 @@
     <Content Include="Views\Admins\Admins.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\SignUp\SignUp.cshtml" />
+    <Content Include="Views\Shared\Unauthorized.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

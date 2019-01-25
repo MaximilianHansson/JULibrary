@@ -14,7 +14,15 @@ namespace PresentationLayer.Controllers
         // GET: SignUp
         public ActionResult Index()
         {
-            return View("SignUp");
+            if (Session["User"] != null)
+            {
+                return View("SignUp");
+            }
+            else
+            {
+                return View("~/Views/Shared/Unauthorized.cshtml");
+            }
+            
         }
 
         [HttpPost]

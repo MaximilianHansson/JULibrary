@@ -14,7 +14,10 @@ namespace PresentationLayer.Controllers
 		// GET: CreateAuthor
 		public ActionResult Index() //Not sure if this is right
         {
-			var firstName = Request.Form["firstName"];
+            if (Session["User"] == null)
+            { return View("~/Views/Shared/Unauthorized.cshtml"); }
+
+            var firstName = Request.Form["firstName"];
 			var lastName = Request.Form["lastName"];
 			var birthYear = Request.Form["birthYear"];
 			if (firstName != "" && lastName != "" && birthYear != "")

@@ -27,6 +27,9 @@ namespace PresentationLayer.Controllers
         }
         public ActionResult Delete(string isbn)
         {
+            if (Session["User"] == null)
+            { return View("~/Views/Shared/Unauthorized.cshtml"); }
+
             BookManager DBbook = new BookManager();
 
             DBbook.deleteBook(isbn);

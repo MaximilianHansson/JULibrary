@@ -14,7 +14,10 @@ namespace PresentationLayer.Controllers
 		// GET: AuthorEdit
 		public ActionResult Index(int Aid)
 		{
-			AuthorManager DBauthor = new AuthorManager();
+            if (Session["User"] == null)
+            { return View("~/Views/Shared/Unauthorized.cshtml"); }
+
+            AuthorManager DBauthor = new AuthorManager();
 			Author author = new Author();
 
 			author = DBauthor.getAuthor(Aid);
@@ -35,7 +38,10 @@ namespace PresentationLayer.Controllers
 		[HttpPost]
 		public ActionResult Index()
 		{
-			var firstName = Request.Form["firstName"];
+            if (Session["User"] == null)
+            { return View("~/Views/Shared/Unauthorized.cshtml"); }
+
+            var firstName = Request.Form["firstName"];
 			var lastName = Request.Form["lastName"];
 			var birthYear = Request.Form["birthYear"];
 			//Got to acces Aid

@@ -14,6 +14,8 @@ namespace PresentationLayer.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            if (Session["User"] == null)
+            { return View("~/Views/Shared/Unauthorized.cshtml"); }
             return View("CreateBook");
         }
 
@@ -21,6 +23,9 @@ namespace PresentationLayer.Controllers
         [ActionName("Index")]
         public ActionResult IndexPost()
         {
+            if (Session["User"] == null)
+            { return View("~/Views/Shared/Unauthorized.cshtml"); }
+
             var title = Request.Form["Title"];
             var ISBN = Request.Form["ISBN"];
             var pages = Request.Form["pages"];
